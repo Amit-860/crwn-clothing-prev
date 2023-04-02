@@ -22,12 +22,12 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: "AIzaSyDYYIVwQXH52dxhfEBen7zSTpqE-aZ_pgk",
-	authDomain: "crwn-clothing-db-a8853.firebaseapp.com",
-	projectId: "crwn-clothing-db-a8853",
-	storageBucket: "crwn-clothing-db-a8853.appspot.com",
-	messagingSenderId: "488190944330",
-	appId: "1:488190944330:web:426fbc50911ffeaf7ef2b3",
+	apiKey: "",
+	authDomain: "",
+	projectId: "",
+	storageBucket: "",
+	messagingSenderId: "",
+	appId: "",
 };
 
 // Initialize Firebase
