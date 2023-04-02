@@ -24,7 +24,9 @@ const increaseQuantity = (cartItems, cartItemToIncrease) => {
 };
 
 const decreaseQuantity = (cartItems, cartItemToDecrease) => {
-	if (cartItemToDecrease.quantity === 0) return cartItems;
+	if (cartItemToDecrease.quantity === 1) {
+		return deleteCartItem(cartItems, cartItemToDecrease);
+	}
 	return cartItems.map((cartItem) =>
 		cartItem.id === cartItemToDecrease.id
 			? { ...cartItem, quantity: cartItem.quantity - 1 }

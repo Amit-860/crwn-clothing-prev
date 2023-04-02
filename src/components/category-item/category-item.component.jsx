@@ -1,22 +1,21 @@
-import './category-item.style.scss'
+import {H2, P, BackgroundImage, CategoryBodyContainer, CategoryContainer} from './category-item.style'
 import React from 'react'
 
 
 const CategoryItem = (props) => {
    const { title, imageUrl } = props
    return (
-      < div className='category-container'>
-         <div
-            className="background-image"
+      < CategoryContainer>
+         <BackgroundImage
             style={{
                backgroundImage: `url(${imageUrl})`,
             }}
          />
-         <div className='category-body-container'>
-            <h2>{title}</h2>
-            <p>Shop Now</p>
-         </div>
-      </div >
+         <CategoryBodyContainer>
+            <H2>{title}</H2>
+            <P>Shop Now</P>
+         </CategoryBodyContainer>
+      </CategoryContainer >
    )
 }
 

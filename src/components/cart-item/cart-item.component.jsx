@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import "./cart-item.styles.scss";
+import { CartContext } from "../../contexts/cart.context";
 
-const CartItem = (props) => {
-	const { name, imageUrl, price, quantity } = props.cartItem;
+import {ManageContainer, CartManageContainer, Img, CartItemContainer, Name, ItemDetails, Icon} from "./cart-item.styles";
+
+const CartItem = ({ cartItem }) => {
+	const { name, imageUrl, price, quantity } = cartItem;
+	const { increamentItem, decrementItem } = useContext(CartContext);
 	return (
-		<div className="cart-item-container">
-			<img src={imageUrl} alt={name} />
-			<div className="item-details">
-				<span className="name">{name}</span>
-				<span className="price">
-					{quantity} X ${price}
-				</span>
-				{/* <span>+</span>
-				<span>-</span> */}
-			</div>
-		</div>
+		<CartItemContainer>
+			<Img src={imageUrl} alt={name} />
+			<ItemDetails>
+				<Name className="name">{name}</Name>
+				<ManageContainer>
+					<span className="price">
+						{quantity} X ${price}
+					</span>
+					<div className="sign-container">
+						{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+						<Icon
+							onClick={() => increamentItem(cartItem)}
+						>
+							+
+						</Icon>
+						{/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+						<Icon
+							onClick={() => decrementItem(cartItem)}
+						>
+							-
+						</Icon>
+					</div>
+				</ManageContainer>
+			</ItemDetails>
+		</CartItemContainer>
 	);
 };
 
