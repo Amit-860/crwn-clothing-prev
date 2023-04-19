@@ -21,13 +21,22 @@ import {
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
+// const firebaseConfig = {
+// 	apiKey: "",
+// 	authDomain: "",
+// 	projectId: "",
+// 	storageBucket: "",
+// 	messagingSenderId: "",
+// 	appId: "",
+// };
+
 const firebaseConfig = {
-	apiKey: "",
-	authDomain: "",
-	projectId: "",
-	storageBucket: "",
-	messagingSenderId: "",
-	appId: "",
+	apiKey: "AIzaSyDYYIVwQXH52dxhfEBen7zSTpqE-aZ_pgk",
+	authDomain: "crwn-clothing-db-a8853.firebaseapp.com",
+	projectId: "crwn-clothing-db-a8853",
+	storageBucket: "crwn-clothing-db-a8853.appspot.com",
+	messagingSenderId: "488190944330",
+	appId: "1:488190944330:web:426fbc50911ffeaf7ef2b3",
 };
 
 // Initialize Firebase
@@ -81,13 +90,7 @@ export const getCategoriesAndDocuments = async () => {
 	const q = query(collectionRef);
 
 	const querySnapshot = await getDocs(q);
-	const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-		const { title, items } = docSnapshot.data();
-		acc[title.toLowerCase()] = items;
-		return acc;
-	}, {});
-
-	return categoryMap;
+	return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const createUserDocumentFromAuth = async (
