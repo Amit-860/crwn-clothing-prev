@@ -63,7 +63,9 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
 	if (!email || !password) {
 		return;
 	}
-	return await signInWithEmailAndPassword(auth, email, password);
+	const test = await signInWithEmailAndPassword(auth, email, password);
+	// console.log(test);
+	return test;
 };
 
 export const signOutUser = () => signOut(auth);
@@ -124,3 +126,16 @@ export const createUserDocumentFromAuth = async (
 
 export const onAuthStateChangedListner = (callback) =>
 	onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = onAuthStateChanged(
+			auth,
+			(userAuth) => {
+				unsubscribe();
+				resolve(userAuth);
+			},
+			reject,
+		);
+	});
+};

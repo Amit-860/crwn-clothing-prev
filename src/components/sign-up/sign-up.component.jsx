@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
 	createAuthUserWithEmailAndPassword,
 	createUserDocumentFromAuth,
@@ -7,6 +8,7 @@ import {
 import FormInput from "../form-input/form-input.component.jsx";
 import Button from "../button/button.component.jsx";
 import { SignUpContainer } from "./sign-up.styles";
+import { singUpStart } from "./../../store/user/user.action";
 
 const defautlFormFields = {
 	displayName: "",
@@ -18,6 +20,7 @@ const defautlFormFields = {
 const SignUpForm = () => {
 	const [formFields, setFormFields] = useState(defautlFormFields);
 	const { displayName, email, password, confirmPassword } = formFields;
+	const dispatch = useDispatch();
 
 	const handleChange = (target) => {
 		setFormFields((formFields) => {
@@ -39,12 +42,14 @@ const SignUpForm = () => {
 
 		if (email && password === confirmPassword) {
 			try {
-				const resp = await createAuthUserWithEmailAndPassword(email, password);
+				dispatch(singUpStart(email, password, displayName));
+				// const resp = await createAuthUserWithEmailAndPassword(email, password);
+
 				// console.log(resp);
 
-				const userDocRef = await createUserDocumentFromAuth(resp.user, {
-					displayName: displayName,
-				});
+				// const userDocRef = await createUserDocumentFromAuth(resp.user, {
+				// 	displayName: displayName,
+				// });
 				// console.log(userDocRef);
 
 				resetFormFields();
@@ -65,7 +70,7 @@ const SignUpForm = () => {
 			<form onSubmit={handleSubmit}>
 				<FormInput
 					label={"Display Name"}
-					type='text'
+					type="text"
 					name="displayName"
 					value={displayName}
 					onChange={(event) => handleChange(event.target)}
@@ -74,7 +79,7 @@ const SignUpForm = () => {
 
 				<FormInput
 					label={"Email"}
-					type='email'
+					type="email"
 					name="email"
 					value={email}
 					onChange={(event) => handleChange(event.target)}
@@ -83,8 +88,8 @@ const SignUpForm = () => {
 
 				<FormInput
 					label={"Password"}
-					type='password'
-					name='password'
+					type="password"
+					name="password"
 					value={password}
 					onChange={(event) => handleChange(event.target)}
 					required
@@ -92,8 +97,8 @@ const SignUpForm = () => {
 
 				<FormInput
 					label={"Confirm Password"}
-					type='password'
-					name='confirmPassword'
+					type="password"
+					name="confirmPassword"
 					value={confirmPassword}
 					onChange={(event) => handleChange(event.target)}
 					required

@@ -7,7 +7,7 @@ export const selectCategories = createSelector(
 	(categorieSlice) => categorieSlice.categoriesArray,
 );
 
-export const getCategory = createSelector(
+export const selectCategory = createSelector(
 	[selectCategories],
 	(categoriesArray) => {
 		// console.log(categories.categoriesArray);
@@ -17,4 +17,9 @@ export const getCategory = createSelector(
 			return acc;
 		}, {});
 	},
+);
+
+export const selectIsLoading = createSelector(
+	[selectCategoryReducer],
+	(categorySlice) => categorySlice.isLoading,
 );

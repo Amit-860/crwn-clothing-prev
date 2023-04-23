@@ -14,7 +14,7 @@ const Checkout = () => {
 	// const { cartItems, total } = useContext(CartContext);
 	const cartItems = useSelector(selectCartItems);
 	const total = useSelector(selectCartTotal);
-	console.log(total);
+	// console.log(total);
 	const cartItemElements = cartItems.map((cartItem) => {
 		return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
 	});
